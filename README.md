@@ -1,2 +1,9 @@
-# hw-signal-positioning
-《工程信号分析》小组作业：基于超声导波的铝板贯穿孔定位
+ultrasonic-guided-wave-positioning-perforation
+==============================
+
+ Ultrasonic guided wave-based perforation positioning of aluminum plate (Engineering signal analysis homework)
+
+Project Organization
+--------------------
+
+
