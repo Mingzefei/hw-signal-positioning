@@ -1,3 +1,5 @@
+close all;
+clear;
 %% 开启并行
 my_par = parpool; 
 
@@ -129,17 +131,48 @@ close(f3);
 % beta 
 N = 150;
 alpha = 1;
-for beta = [1.01, 1.02, 1.03, 1.05, 1.07, 1.10, 1.15, 2.10]
-    Analyse(n_signals,d_signals,N,alpha,beta);
+beta_list = [1.01, 1.02, 1.03, 1.05, 1.07, 1.10, 1.15,1.25,1.35,1.55,1.75,2.10];
+H_beta_list = zeros(size(beta_list));
+for i = 1:numel(beta_list)
+    beta = beta_list(i);
+    [p_xy,pos_x,pos_y] = Analyse(n_signals,d_signals,N,alpha,beta);
+    % 归一化
+    p_xy_normalized = p_xy / sum(p_xy(:));
+    % 计算信息熵
+    H_xy = -sum(p_xy_normalized(:) .* log2(p_xy_normalized(:)), 'omitnan');
+    H_beta_list(i) = H_xy;
 end
+f_beta = figure();
+plot(beta_list, H_beta_list, 'o-')
+xlabel('$\beta$','Interpreter', 'latex')
+ylabel('$H(\beta)$','Interpreter', 'latex')
+xlim([0.9,2.4]);
+ylim([12.8,14.5]);
+saveas(f_beta,'..\\reports\\figures\\信息熵-beta.png')
+close(f_beta);
 
 % alpha 
 N = 150;
 beta = 1.02;
-for alpha = [1, 2, 3, 4, 5, 7, 9, 12, 15,20]
-    Analyse(n_signals,d_signals,N,alpha,beta);
+alpha_list = [1, 2, 3, 4, 5, 7, 9, 12, 15,20];
+H_alpha_list = zeros(size(alpha_list));
+for i = 1:numel(alpha_list)
+    alpha = alpha_list(i);
+    [p_xy,pos_x,pos_y] = Analyse(n_signals,d_signals,N,alpha,beta);
+    % 归一化
+    p_xy_normalized = p_xy / sum(p_xy(:));
+    % 计算信息熵
+    H_xy = -sum(p_xy_normalized(:) .* log2(p_xy_normalized(:)), 'omitnan');
+    H_alpha_list(i) = H_xy;
 end
-
+f_alpha = figure();
+plot(alpha_list, H_alpha_list, 'o-')
+xlabel('$\alpha$','Interpreter', 'latex')
+ylabel('$H(\alpha)$','Interpreter', 'latex')
+xlim([0,22]);
+ylim([0,15]);
+saveas(f_alpha,'..\\reports\\figures\\信息熵-alpha.png')
+close(f_alpha);
 
 %% 结束并行
 
