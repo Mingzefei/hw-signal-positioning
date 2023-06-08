@@ -30,16 +30,18 @@ n_data_12 = reshape(n_signals(1,2,:),1,4000);
 d_data_12 = reshape(d_signals(1,2,:),1,4000);
 f1 = figure(1);
 t = 1:length(n_data_12);
-plot(t,d_data_12,'r')
-plot(t,n_data_12,'b')
+plot(t,d_data_12,'r','LineWidth',1.5)
+plot(t,n_data_12,'LineWidth',1.5)
+set(gca, 'linewidth',0.8)
 saveas(f1,'..\\reports\\figures\\由1到2的原始信号.png')
 close(f1);
 n_data_12 = reshape(n_signals(1,2,1:150),1,150);
 d_data_12 = reshape(d_signals(1,2,1:150),1,150);
 f1 = figure(1);
 t = 1:length(n_data_12);
-plot(t,d_data_12,'r')
-plot(t,n_data_12,'b')
+plot(t,d_data_12,'r','LineWidth',1.5)
+plot(t,n_data_12,'LineWidth',1.5)
+set(gca, 'linewidth',0.8)
 saveas(f1,'..\\reports\\figures\\由1到2的原始信号（前150）.png')
 close(f1);
 
@@ -61,16 +63,16 @@ n_data_12 = reshape(n_signals(1,2,:),1,4000);
 d_data_12 = reshape(d_signals(1,2,:),1,4000);
 f2 = figure(2);
 t = 1:length(n_data_12);
-plot(t,d_data_12,'r')
-plot(t,n_data_12,'b')
+plot(t,d_data_12,'r','LineWidth',1.5)
+plot(t,n_data_12,'LineWidth',1.5)
 saveas(f2,'..\\reports\\figures\\由1到2的预处理信号.png')
 close(f2);
 n_data_12 = reshape(n_signals(1,2,1:150),1,150);
 d_data_12 = reshape(d_signals(1,2,1:150),1,150);
 f2 = figure(2);
 t = 1:length(n_data_12);
-plot(t,d_data_12,'r')
-plot(t,n_data_12,'b')
+plot(t,d_data_12,'r','LineWidth',1.5)
+plot(t,n_data_12,'LineWidth',1.5)
 saveas(f2,'..\\reports\\figures\\由1到2的预处理信号（前150）.png')
 close(f2);
 
@@ -79,8 +81,8 @@ n_data_56 = reshape(n_signals(5,6,1:150),1,150);
 d_data_56 = reshape(d_signals(5,6,1:150),1,150);
 f2 = figure(2);
 t = 1:length(n_data_56);
-plot(t,d_data_56,'r')
-plot(t,n_data_56,'b')
+plot(t,d_data_56,'r','LineWidth',1.5)
+plot(t,n_data_56,'LineWidth',1.5)
 saveas(f2,'..\\reports\\figures\\由5到6的预处理信号（前150）.png')
 close(f2);
 
@@ -143,11 +145,12 @@ for i = 1:numel(beta_list)
     H_beta_list(i) = H_xy;
 end
 f_beta = figure();
-plot(beta_list, H_beta_list, 'o-')
+plot(beta_list, H_beta_list, 'o-','LineWidth',1.5)
 xlabel('$\beta$','Interpreter', 'latex')
 ylabel('$H(\beta)$','Interpreter', 'latex')
 xlim([0.9,2.4]);
 ylim([12.8,14.5]);
+set(gca, 'linewidth',0.8)
 saveas(f_beta,'..\\reports\\figures\\信息熵-beta.png')
 close(f_beta);
 
@@ -166,11 +169,12 @@ for i = 1:numel(alpha_list)
     H_alpha_list(i) = H_xy;
 end
 f_alpha = figure();
-plot(alpha_list, H_alpha_list, 'o-')
+plot(alpha_list, H_alpha_list, 'o-', 'LineWidth',1.5)
 xlabel('$\alpha$','Interpreter', 'latex')
 ylabel('$H(\alpha)$','Interpreter', 'latex')
 xlim([0,22]);
 ylim([0,15]);
+set(gca, 'linewidth',0.8)
 saveas(f_alpha,'..\\reports\\figures\\信息熵-alpha.png')
 close(f_alpha);
 
