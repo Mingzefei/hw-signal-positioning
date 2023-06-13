@@ -194,7 +194,8 @@ function p = P(DI,x,y,alpha,beta)
            pos_i = [s_x(i) s_y(i)];
            pos_j = [s_x(j) s_y(j)];
            pos_xy = [x y];
-           RD = (pdist2(pos_i,pos_xy,'euclidean')+pdist2(pos_j,pos_xy,'euclidean'))/pdist2(pos_i,pos_j,'euclidean');
+           RD = (pdist2(pos_i,pos_xy,'euclidean')+pdist2(pos_j,pos_xy,'euclidean'))...
+               /pdist2(pos_i,pos_j,'euclidean');
            R = min(RD, beta);
            p = p + DI(i,j)*(beta-R)/(beta-1);
         end
